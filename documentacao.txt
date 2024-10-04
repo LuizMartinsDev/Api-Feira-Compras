@@ -2,48 +2,6 @@ A ideia é que essa API tenha as seguintes funcionalidades:
 Inserção de itens na lista de compras;
 Consulta de itens na lista (todos, por id e por filtro).
 
-
---- Requisitos Gerais: -----------------------------------------
-A porta utilizada pelo seu servidor deve ser obrigatoriamente a 5000.
-Versionamento usando Git é obrigatório. Crie um repositório público no seu perfil do GitHub e faça commits a cada funcionalidade implementada.
-Não esqueça de criar o .gitignore: a node_modules não deve ser commitada.
-Seu projeto deve ter, obrigatoriamente, os arquivos package.json e package-lock.json, que devem estar na raiz do projeto. Eles devem conter todas as dependências do projeto.
-Adicione o código que inicia o servidor, com a função listen, no arquivo src/app.js.
-Adicione um script no package.json para iniciar o servidor rodando npm start como no exemplo abaixo:
-// package.json
-{
-  //...
-  "scripts": {
-    //...
-    "start": "node ./src/app.js"
-  }
-}
-caso queira, pode adicionar outros scripts para te ajudar, como por exemplo o “dev” com nodemon
-Para persistir os dados dos itens da lista de compra, utilize variáveis globais em memória.
-Use o Thunder Client ou o Postman para fazer os testes manuais da sua aplicação.
-
-
------- Requisitos Post ----------------------------------------------------
-O usuário deve ser capaz de registrar um novo item para sua listinha de compras.
-É esperado que o usuário envie as seguintes informações no corpo da requisição (body):
-{
-	name: string; // nome do item (rx: laranja)
-	quantity: integer; // quantidade do item (ex: 2)
-	type: string; // tipo do item (ex: fruta)
-}
-Todos os dados são obrigatórios. Caso a informação não seja enviada corretamente, o sistema deve retornar o status code 422 (Unprocessable Entity). Caso contrário, deve retornar o status code 201 (Created).
-O item deve ser retornado junto com um id criado e administrado pelo sistema:
-{
-	id: 1, // gerado pelo sistema => inteiro e sequencial
-	name: "Maçã",
-	quantity: 1,
-	type: "Fruta",
-}
-o id precisa ser numérico e sequencial
-O sistema não deve suportar a inserção de dois itens iguais (ou seja, com o mesmo nome). Caso isso aconteça, o sistema deve retornar o status code 409 (Conflict).
-
-
-
 ----- Requisitos Get -------------------------------------------------
 O usuário deve ser capaz de obter uma lista com todos os itens da lista de compras.
 A resposta deve vir no seguinte formato:
