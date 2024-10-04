@@ -30,9 +30,4 @@ Se quiser testar o projeto, aqui estão os passos:
 - **Acessar a pasta do projeto**: cd Api-Feira-Compras.
 - **Instalar as dependências**:  npm install.
 - **Iniciar o servidor**:   npm run dev.
- 
-   
-  
-Iniciar o servidor
-   
-   npm run dev
+
