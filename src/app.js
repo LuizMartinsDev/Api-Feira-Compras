@@ -23,5 +23,20 @@ api.post('/items', (req, res) => {
     res.status(201).json({name, quantity, type})
 } )
 
+api.get('/items', (req, res) => {
+    const tipoEspecifico = req.query.type;
+
+    if(tipoEspecifico){
+       
+        const arrayComTipoEspecifico = items.filter((item) => item.type.toLowerCase().includes(tipoEspecifico))
+        if(!arrayComTipoEspecifico){
+            return res.status(404).json([]);
+        }
+        return res.status(200).json(arrayComTipoEspecifico);
+    }
+
+    res.status(200).json(items)
+})
+
 
 api.listen(port, () => console.log(`Rodando na porta ${port}`))
