@@ -8,6 +8,11 @@ const port = 5000;
 
 const items = []
 
+function validarId(id) {
+    const regex = /^[0-9]+$/; 
+    return regex.test(id); 
+}
+
 api.post('/items', (req, res) => {
     const {name, quantity, type} = req.body;
     const verificaNomeRepetido = items.find((item) => item.name === name);
@@ -36,6 +41,22 @@ api.get('/items', (req, res) => {
     }
 
     res.status(200).json(items)
+})
+
+api.get('/items/:id', (req, res) => {
+    const id = req.params.id;
+
+    if(id < 1 || !validarId(id)){
+        return res.status(400).send('Id invalido')
+    }
+
+    const retornaItemComId = items.find((item) => item.id === Number(id));
+    
+    if(!retornaItemComId){
+        return res.status(404).send('Esse id não existe');
+    }
+
+    res.status(200).json(retornaItemComId);
 })
 
 
